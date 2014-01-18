@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="include">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="source">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="platform">
+      <UniqueIdentifier>{f529ec1c-14c0-448b-b719-d96a35175f61}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\libdepvr\source\pvr.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\libdepvr\include\pvr_color_unit.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libdepvr\include\pvr_decompress.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libdepvr\include\pvr_deflate_unit.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libdepvr\include\pvr_format.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libdepvr\include\pvr_modulation_unit.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libdepvr\include\pvr_operations.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libdepvr\include\pvr_types.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libdepvr\include\pvr_unpack_unit.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libdepvr\type_configuration.h">
+      <Filter>platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libdepvr\type_android.h">
+      <Filter>platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libdepvr\tytpe_win32.h">
+      <Filter>platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libdepvr\type_bada.h">
+      <Filter>platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libdepvr\type_ios.h">
+      <Filter>platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\libdepvr\type_macos.h">
+      <Filter>platform</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
