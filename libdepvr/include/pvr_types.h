@@ -18,16 +18,20 @@ namespace pvr {
 		static const int32_t height;
 		static const int32_t half_width;
 		static const int32_t half_height;
+		static const int32_t deflate_stream_size;
 	};
 
-	const int32_t constants<ct_2bpp>::width			= 8;
-	const int32_t constants<ct_2bpp>::height		= 4;
-	const int32_t constants<ct_2bpp>::half_width	= 4;
-	const int32_t constants<ct_2bpp>::half_height	= 2;
-	const int32_t constants<ct_4bpp>::width			= 4;
-	const int32_t constants<ct_4bpp>::height		= 4;
-	const int32_t constants<ct_4bpp>::half_width	= 2;
-	const int32_t constants<ct_4bpp>::half_height	= 2;
+	const int32_t constants<ct_2bpp>::width					= 8;
+	const int32_t constants<ct_2bpp>::height				= 4;
+	const int32_t constants<ct_2bpp>::half_width			= 4;
+	const int32_t constants<ct_2bpp>::half_height			= 2;
+	const int32_t constants<ct_2bpp>::deflate_stream_size	= 32;
+
+	const int32_t constants<ct_4bpp>::width					= 4;
+	const int32_t constants<ct_4bpp>::height				= 4;
+	const int32_t constants<ct_4bpp>::half_width			= 2;
+	const int32_t constants<ct_4bpp>::half_height			= 2;
+	const int32_t constants<ct_4bpp>::deflate_stream_size	= 16;
 
 	union color32_t {
 		pixel_t		m_pixel;

@@ -3,24 +3,14 @@
 namespace pvr {
 	template< compression_t mtd >
 	struct deflate_stream_t {
+		color32_t	m_stream[ constants<mtd>::deflate_stream_size ];
+		
 		color32_t& color( const int32_t x, const int32_t y );
 	};
 
-	template<>
-	struct deflate_stream_t<ct_2bpp> {
-		color32_t	m_stream[32];
+	inline color32_t& deflate_stream_t<ct_2bpp>::color( const int32_t x, const int32_t y ) { return m_stream[ x + y * constants<ct_2bpp>::width ]; };
+	inline color32_t& deflate_stream_t<ct_4bpp>::color( const int32_t x, const int32_t y ) { return m_stream[ y + x * constants<ct_4bpp>::height ]; };
 
-		color32_t& color( const int32_t x, const int32_t y ){ return m_stream[ x + y * constants<ct_2bpp>::width ]; };
-	};
-
-	template<>
-	struct deflate_stream_t<ct_4bpp> {
-		color32_t	m_stream[16];
-
-		color32_t& color( const int32_t x, const int32_t y ){ return m_stream[ y + x * constants<ct_4bpp>::height ]; };
-	};
-
-	
 	template< compression_t mtd >
 	class deflate_unit_t {
 	private:
