@@ -75,7 +75,7 @@ namespace pvr {
 		deflate_unit_t<mtd>	m_du;
 
 	public:
-		unpack_unit_t( const int32_t dim_x, const int32_t dim_y );
+		unpack_unit_t( const int32_t dim_x, const int32_t dim_y ) : basic_unpack_unit_t( dim_x, dim_y, constants<mtd>::width, constants<mtd>::height ) {};
 		
 		virtual inline void push( const pk_region_t* regs ){
 			const bool use_cache = m_rect.right > m_rect.left;
@@ -88,12 +88,32 @@ namespace pvr {
 			);
 		};
 
-		virtual inline void pop( color32_t* pixels );
-		virtual const uint32_t processed() const;
-	};
+		virtual inline void pop( color32_t* pixels ){
+			const tex_region_t wr(
+				m_rect.left * constants<mtd>::width,
+				m_rect.top * constants<mtd>::height,
+				m_rect.right * constants<mtd>::width,
+				m_rect.bottom * constants<mtd>::height
+			);
 
-	template<> inline unpack_unit_t<ct_2bpp>::unpack_unit_t( const int32_t dim_x, const int32_t dim_y ) : basic_unpack_unit_t( dim_x, dim_y, w2b_width, w2b_height ) {};
-	template<> inline unpack_unit_t<ct_4bpp>::unpack_unit_t( const int32_t dim_x, const int32_t dim_y ) : basic_unpack_unit_t( dim_x, dim_y, w4b_width, w4b_height ) {};
-	template<> inline const uint32_t unpack_unit_t<ct_2bpp>::processed() const { return ( m_size[0] * m_size[1] ) / w2b_hw; };
-	template<> inline const uint32_t unpack_unit_t<ct_4bpp>::processed() const { return ( m_size[0] * m_size[1] ) / w4b_hw; };
+			for( int32_t y = 0; constants<mtd>::half_height > y; y++ ){
+				color32_t* tr	= pixels + ( m_size[0] * ( wr.top + y + constants<mtd>::half_height ) );
+				color32_t* br	= pixels + ( m_size[0] * ( wr.bottom + y ) );
+				color32_t* ts	= m_du.stream().m_stream + y * constants<mtd>::width;
+				color32_t* bs	= m_du.stream().m_stream + ( y + constants<mtd>::half_height ) * constants<mtd>::width;
+			
+				for( int32_t x = 0; constants<mtd>::half_width > x; x++ ){
+					register int32_t row_off	= wr.left + x + constants<mtd>::half_width;
+					register int32_t stk_off	= x + constants<mtd>::half_width;
+					tr[ row_off ]				= ts[ x ];
+					br[ row_off ]				= bs[ x ];
+					row_off						= wr.right + x;
+					tr[ row_off ]				= ts[ stk_off ];
+					br[ row_off ]				= bs[ stk_off ];
+				};
+			};
+		};
+
+		virtual const uint32_t processed() const		{ return ( m_size[0] * m_size[1] ) / constants<mtd>::half_width; };
+	};
 };
