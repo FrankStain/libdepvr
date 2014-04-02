@@ -11,6 +11,8 @@ namespace pvr {
 	template<>
 	class modulation_unit_t<ct_2bpp> {
 	private:
+		typedef constants<ct_2bpp> c;
+
 		uint32_t			m_values[16][8];
 		uint32_t			m_modes[16][8];
 
@@ -24,6 +26,8 @@ namespace pvr {
 	template<>
 	class modulation_unit_t<ct_4bpp> {
 	private:
+		typedef constants<ct_4bpp> c;
+		
 		uint32_t			m_values[8][8];
 
 	public:
