@@ -27,7 +27,7 @@ namespace pvr {
 			uuptr = new unpack_unit_t<ct_2bpp>( tx_width, tx_height );
 		};
 
-		if( ( dst_width ^ tx_width ) || ( dst_height ^ tx_height ) ){
+		if( ( dst_width ^ tx_width ) | ( dst_height ^ tx_height ) ){
 			tx_pix = new color32_t[ tx_width * tx_height ];
 		};
 
